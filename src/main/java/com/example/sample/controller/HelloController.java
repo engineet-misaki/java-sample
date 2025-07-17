@@ -1,8 +1,10 @@
 package com.example.sample.controller;
 
+import com.example.sample.form.RegistForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,9 +20,7 @@ public class HelloController {
     }
 
     @PostMapping("/post")
-    public String post(@RequestParam String greeting, Model model) {
-        model.addAttribute("welcome", greeting);
-
-        return "hello";
+    public String post(@ModelAttribute RegistForm form) {
+        return  "hello";
     }
 }
