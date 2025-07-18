@@ -8,13 +8,14 @@
 <body>
 <h1>hello world</h1>
 <p>[[${welcome}]]</p>
-<p>[[${greeting}]]</p>
+<p>[[${registForm}]]</p>
+
 <p>[[${test}]]</p>
 
 <form th:action="@{/post}" method="post">
     <input type="text" name="greeting" />
+    <input type="number" name="intText" />
     <button type="submit">送信</button>
 </form>
 </body>
-
 </html>
