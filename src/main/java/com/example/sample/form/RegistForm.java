@@ -1,12 +1,12 @@
 package com.example.sample.form;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
 public class RegistForm {
 
-    @NonNull
+    @NotBlank
     private String greeting;
 
     private Integer intText;

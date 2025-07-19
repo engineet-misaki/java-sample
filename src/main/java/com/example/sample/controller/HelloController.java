@@ -13,10 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloController {
 
-    @GetMapping("/hello")
+
+    @GetMapping("/hello-old")
     public String hello(Model model, @RequestParam(required = false, defaultValue = "testのパラメータなし") String test) {
         model.addAttribute("welcome","文字追加");
         model.addAttribute("test",test);
+
+        return "hello";
+    }
+
+    @GetMapping("/hello")
+    public String hello(@ModelAttribute RegistForm form) {
 
         return "hello";
     }
