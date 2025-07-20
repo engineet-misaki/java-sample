@@ -32,8 +32,8 @@ public class HelloController {
     public String post(@Validated @ModelAttribute RegistForm form, BindingResult result) {
         if(result.hasErrors()) {
 
-            return "hello";
+            return "res";
         }
-        return  "hello";
+        return  "res";
     }
 }

@@ -12,7 +12,7 @@
 <form th:action="@{/post}" th:object="${registForm}" method="post">
     <input type="text" th:field="*{greeting}" />
     <p th:if="${#fields.hasErrors('greeting')}">error</p>
-    <input type="number" th:field="*{intText}" />
+    <input type="text" th:field="*{intText}" />
     <p th:if="${#fields.hasErrors('intText')}">error</p>
 
     <button type="submit">送信</button>
