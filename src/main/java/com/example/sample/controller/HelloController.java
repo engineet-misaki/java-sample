@@ -1,6 +1,10 @@
 package com.example.sample.controller;
 
 import com.example.sample.form.RegistForm;
+import com.example.sample.service.RegistService;
+import com.example.sample.service.RegistServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class HelloController {
 
+    private final RegistService service;
+
+//    @Autowired
+//    public HelloController(RegistService service) {
+//        this.service = service
+//    }
 
     @GetMapping("/hello-old")
     public String hello(Model model, @RequestParam(required = false, defaultValue = "testのパラメータなし") String test) {
@@ -35,5 +46,19 @@ public class HelloController {
             return "hello";
         }
         return  "res";
+    }
+
+    @PostMapping("/complete")
+    public String complete(@Validated RegistForm form, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return "hello";
+        }
+
+//        RegistService service = new RegistServiceImpl();
+        String msg = service.regist();
+
+        model.addAttribute("msg",msg);
+
+        return  "complete";
     }
 }
