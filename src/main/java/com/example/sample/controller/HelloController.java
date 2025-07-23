@@ -1,5 +1,6 @@
 package com.example.sample.controller;
 
+import com.example.sample.entity.Review;
 import com.example.sample.form.RegistForm;
 import com.example.sample.service.RegistService;
 import com.example.sample.service.RegistServiceImpl;
@@ -42,7 +43,6 @@ public class HelloController {
     @PostMapping("/post")
     public String post(@Validated @ModelAttribute RegistForm form, BindingResult result) {
         if(result.hasErrors()) {
-
             return "hello";
         }
         return  "res";
@@ -54,8 +54,12 @@ public class HelloController {
             return "hello";
         }
 
-//        RegistService service = new RegistServiceImpl();
-        String msg = service.regist();
+        // DIしてるのでいらない
+        // RegistService service = new RegistServiceImpl();
+        Review dto = new Review();
+        dto.setGreeting(form.getGreeting());
+        dto.setIntText(form.getIntText());
+        String msg = service.regist(dto);
 
         model.addAttribute("msg",msg);
 
