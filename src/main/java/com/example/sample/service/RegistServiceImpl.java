@@ -15,6 +15,6 @@ public class RegistServiceImpl implements RegistService {
     public String regist(Review dto) {
         String greeting = dto.getGreeting();
         registRepository.add(dto);
-        return greeting + "登録完了";
+        return greeting + "を登録完了しました";
     }
 }

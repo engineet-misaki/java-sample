@@ -10,9 +10,8 @@
 
 
 <form th:action="@{/complete}" th:object="${registForm}" method="post">
-    <input type="text" th:field="*{greeting}" />
-    <input type="text" th:field="*{intText}" />
-
+    <input type="text" readonly th:field="*{greeting}" />
+    <input type="text" readonly th:field="*{intText}" />
     <button type="submit">送信</button>
 </form>
 </body>
