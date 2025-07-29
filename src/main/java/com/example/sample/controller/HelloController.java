@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,6 +41,11 @@ public class HelloController {
         return "hello";
     }
 
+    @GetMapping("/complete")
+    public String complete() {
+        return "complete";
+    }
+
     @PostMapping("/post")
     public String post(@Validated @ModelAttribute RegistForm form, BindingResult result) {
         if(result.hasErrors()) {
@@ -49,7 +55,7 @@ public class HelloController {
     }
 
     @PostMapping("/complete")
-    public String complete(@Validated RegistForm form, BindingResult result, Model model) {
+    public String complete(@Validated RegistForm form, BindingResult result, RedirectAttributes redirectAttributes) {
         if(result.hasErrors()) {
             return "hello";
         }
@@ -61,8 +67,8 @@ public class HelloController {
         dto.setIntText(form.getIntText());
         String msg = service.regist(dto);
 
-        model.addAttribute("msg",msg);
+        redirectAttributes.addFlashAttribute("msg",msg);
 
-        return  "complete";
+        return  "redirect:/complete";
     }
 }
