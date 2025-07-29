@@ -1,7 +1,9 @@
 package com.example.sample.controller;
 
 import com.example.sample.entity.Review;
+import com.example.sample.entity.Search;
 import com.example.sample.form.RegistForm;
+import com.example.sample.form.SearchForm;
 import com.example.sample.service.RegistService;
 import com.example.sample.service.RegistServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +54,14 @@ public class HelloController {
             return "hello";
         }
         return  "res";
+    }
+
+    @PostMapping("/search")
+    public String search(@ModelAttribute SearchForm form) {
+
+        Search dto = new Search();
+        dto.setSearch(form.getSearch());
+        return  "hello";
     }
 
     @PostMapping("/complete")
