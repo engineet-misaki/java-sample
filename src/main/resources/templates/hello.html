@@ -8,6 +8,12 @@
 <body>
 <h1>hello world</h1>
 
+<form th:action="@{/search}" th:object="${searchForm}" method="post">
+    検索
+    <input type="text" th:field="*{search}" />
+
+    <button type="submit">送信</button>
+</form>
 
 <form th:action="@{/post}" th:object="${registForm}" method="post">
     <input type="text" th:field="*{greeting}" />

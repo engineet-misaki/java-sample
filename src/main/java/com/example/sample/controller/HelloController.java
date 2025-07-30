@@ -6,6 +6,7 @@ import com.example.sample.form.RegistForm;
 import com.example.sample.form.SearchForm;
 import com.example.sample.service.RegistService;
 import com.example.sample.service.RegistServiceImpl;
+import com.example.sample.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class HelloController {
 
     private final RegistService service;
+    private final SearchService searchService;
 
 //    @Autowired
 //    public HelloController(RegistService service) {
@@ -38,7 +40,7 @@ public class HelloController {
     }
 
     @GetMapping("/hello")
-    public String hello(@ModelAttribute RegistForm form) {
+    public String hello(@ModelAttribute RegistForm form, @ModelAttribute SearchForm search) {
 
         return "hello";
     }
@@ -57,10 +59,12 @@ public class HelloController {
     }
 
     @PostMapping("/search")
-    public String search(@ModelAttribute SearchForm form) {
+    public String search(@ModelAttribute RegistForm form,@ModelAttribute SearchForm search) {
 
         Search dto = new Search();
-        dto.setSearch(form.getSearch());
+        dto.setSearch(search.getSearch());
+        String result = searchService.search(dto);
+        search.setSearch(result);
         return  "hello";
     }
 
