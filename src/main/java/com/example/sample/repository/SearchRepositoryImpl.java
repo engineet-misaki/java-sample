@@ -18,8 +18,9 @@ public class SearchRepositoryImpl implements SearchRepository {
     @Override
     public List<Review> search(Search search) {
         String sql =
-                "SELECT * FROM greeting";
-        List<Review> list = jdbcTemplate.query(sql, new DataClassRowMapper<>(Review.class));
+                "SELECT * FROM greeting where greeting LIKE ?";
+        String searchWord =  "%" + search.getSearch() + "%";
+        List<Review> list = jdbcTemplate.query(sql, new DataClassRowMapper<>(Review.class), searchWord);
         return list;
     }
 }

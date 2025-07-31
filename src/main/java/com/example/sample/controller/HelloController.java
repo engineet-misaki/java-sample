@@ -64,7 +64,7 @@ public class HelloController {
         Search dto = new Search();
         dto.setSearch(search.getSearch());
         String result = searchService.search(dto);
-        search.setSearch(result);
+        search.setSearchResult(result);
         return  "hello";
     }
 

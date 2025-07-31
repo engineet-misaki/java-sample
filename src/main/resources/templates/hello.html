@@ -11,6 +11,7 @@
 <form th:action="@{/search}" th:object="${searchForm}" method="post">
     検索
     <input type="text" th:field="*{search}" />
+    <p th:text="*{searchResult}"></p>
 
     <button type="submit">送信</button>
 </form>
