@@ -42,6 +42,11 @@ public class HelloController {
     @GetMapping("/hello")
     public String hello(@ModelAttribute RegistForm form, @ModelAttribute SearchForm search) {
 
+        Search dto = new Search();
+        dto.setSearch(search.getSearch());
+        String result = searchService.search(dto);
+        search.setSearchResult(result);
+
         return "hello";
     }
 
@@ -56,16 +61,6 @@ public class HelloController {
             return "hello";
         }
         return  "res";
-    }
-
-    @PostMapping("/search")
-    public String search(@ModelAttribute RegistForm form,@ModelAttribute SearchForm search) {
-
-        Search dto = new Search();
-        dto.setSearch(search.getSearch());
-        String result = searchService.search(dto);
-        search.setSearchResult(result);
-        return  "hello";
     }
 
     @PostMapping("/complete")
